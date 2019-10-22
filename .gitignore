@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# files
+*.csv
+get_firms_names_chambers.ipynb
