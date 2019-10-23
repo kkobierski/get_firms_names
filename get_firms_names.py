@@ -4,9 +4,10 @@ from lxml.html import fromstring
 import settings as settings
 
 IDS_LIST = settings.IDS_LIST
+PUBLICATION_ID = settings.PUBLICATION_ID
 
-def create_url(id):
-    return f"https://chambers.com/law-firm/-2:{id}"
+def create_url(id, publication_id):
+    return f"https://chambers.com/law-firm/-{publication_id}:{id}"
 
 def get_title(url):
     try:
@@ -24,12 +25,13 @@ def format_title(title):
 FIRMS_DICT = {"id": "name"}
 for id in IDS_LIST:
     id = id
-    url = create_url(id)
-
-    print(url)
+    publication_id = PUBLICATION_ID
+    url = create_url(id, publication_id)
 
     title = format_title(get_title(url))
     FIRMS_DICT.update({id : title})
+
+    print(f"{url} --- {title}")
 
 FIRMS_DICT = {key:val for key, val in FIRMS_DICT.items() if val != "Not found"}
 
